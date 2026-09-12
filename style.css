@@ -121,10 +121,8 @@ a { text-decoration: none; }
 .video-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Much lighter gradient! 
-       10% dark at the top so the video is bright.
-       50% dark at the bottom so the white buttons are still readable. */
-    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+    /* Reduced dark shadow overlay to make the video much brighter and clearer */
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%);
     z-index: 2;
 }
 
