@@ -107,7 +107,9 @@ a { text-decoration: none; }
 .hotel-video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* Changed from 'cover' to 'contain' to prevent cropping */
+    object-fit: contain; 
+    background-color: var(--color-bg-dark); /* Ensures empty space is pure black */
 }
 
 .video-overlay {
