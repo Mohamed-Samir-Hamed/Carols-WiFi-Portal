@@ -111,14 +111,20 @@ a { text-decoration: none; }
 .hotel-video {
     width: 100%;
     height: 100%;
-    object-fit: contain !important; 
+    /* Fills the whole screen for a premium look without black bars */
+    object-fit: cover !important; 
+    /* Forces the camera to focus on the exact center of the video so it doesn't crop weirdly */
+    object-position: center center !important; 
     background-color: transparent;
 }
 
 .video-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+    /* Much lighter gradient! 
+       10% dark at the top so the video is bright.
+       50% dark at the bottom so the white buttons are still readable. */
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
     z-index: 2;
 }
 
