@@ -11,7 +11,6 @@
     <!-- STEP 01: VIDEO INTRO EXPERIENCE -->
     <div id="intro-screen" class="intro-screen">
         <div class="video-container">
-            <!-- Replace src with actual asset path -->
             <video autoplay muted loop playsinline id="hotel-video" class="hotel-video">
                 <source src="assets/hotel-video.mp4" type="video/mp4">
             </video>
@@ -54,10 +53,10 @@
 
             <!-- Login Content -->
             <div id="login-state" class="login-state">
+                
+                <!-- 1. The Logo stays at the top permanently -->
                 <div class="auth-header">
                     <img src="assets/logo.png" alt="Carols Beau Rivage Matrouh" class="hotel-logo auth-logo">
-                    <h1 class="welcome-text">Welcome</h1>
-                    <p class="welcome-subtext">Enjoy seamless connectivity throughout your stay.</p>
                 </div>
 
                 <!-- Global Error Message Container -->
@@ -65,6 +64,12 @@
 
                 <!-- VOUCHER LOGIN VIEW (Default) -->
                 <div id="voucher-view" class="view-section">
+                    
+                    <div class="view-header">
+                        <h1 class="welcome-text">Welcome</h1>
+                        <p class="welcome-subtext">Enjoy seamless connectivity throughout your stay.</p>
+                    </div>
+
                     <form id="voucher-form" class="auth-form" novalidate>
                         <div class="input-group">
                             <div class="input-icon">
@@ -96,7 +101,11 @@
 
                 <!-- ACCOUNT LOGIN VIEW (Hidden by default) -->
                 <div id="account-view" class="view-section d-none">
-                    <p class="alternative-title">Connect with your hotel account</p>
+                    
+                    <div class="view-header">
+                        <h1 class="welcome-text">Account Login</h1>
+                        <p class="welcome-subtext">Connect using your hotel account details.</p>
+                    </div>
                     
                     <form id="account-form" class="auth-form" novalidate>
                         <div class="input-group">
