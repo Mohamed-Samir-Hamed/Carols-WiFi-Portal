@@ -109,7 +109,8 @@ a { text-decoration: none; }
 .hotel-video {
     width: 100%;
     height: 100%;
-    object-fit: cover !important; 
+    /* Changed from cover to contain to stop the zoomed-in cropping */
+    object-fit: contain !important; 
     object-position: center center !important;
     background-color: transparent;
 }
