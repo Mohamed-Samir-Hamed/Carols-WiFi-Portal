@@ -1,17 +1,9 @@
-/**
- * CAPTIVE PORTAL - FRONT-END CONTROLLER
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- ELEMENTS ---
-    // Intro
     const introScreen = document.getElementById('intro-screen');
     const authScreen = document.getElementById('auth-screen');
     const waitBtn = document.getElementById('wait-btn');
     const skipBtn = document.getElementById('skip-btn');
     
-    // View Switching & Dynamic Titles
     const voucherView = document.getElementById('voucher-view');
     const accountView = document.getElementById('account-view');
     const btnShowAccount = document.getElementById('show-account-view');
@@ -19,20 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainTitle = document.getElementById('main-title');
     const mainSubtitle = document.getElementById('main-subtitle');
 
-    // Forms
     const voucherForm = document.getElementById('voucher-form');
     const accountForm = document.getElementById('account-form');
     const togglePasswordBtn = document.getElementById('toggle-password');
     const passwordInput = document.getElementById('account-password');
     
-    // States
     const globalError = document.getElementById('global-error');
     const tcModal = document.getElementById('tc-modal');
     const successState = document.getElementById('success-state');
     const loginState = document.getElementById('login-state');
 
-
-    // --- 1. INTRO & COUNTDOWN LOGIC (10 SECONDS) ---
     let count = 10;
     let autoSkipTimeout;
     
@@ -67,15 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     skipBtn.addEventListener('click', transitionToAuth);
 
-
-    // --- 2. VIEW SWITCHING & DYNAMIC TEXT ---
     btnShowAccount.addEventListener('click', () => {
         voucherView.classList.add('d-none');
         accountView.classList.remove('d-none');
         
-        // Dynamically update the header text
         mainTitle.textContent = "Account Login";
-        mainSubtitle.textContent = "Connect using your hotel account details.";
+        mainSubtitle.innerHTML = "Connect using your hotel <br><strong>account details.</strong>";
         
         clearError(); 
     });
@@ -84,15 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
         accountView.classList.add('d-none');
         voucherView.classList.remove('d-none');
         
-        // Revert the header text back to Welcome
         mainTitle.textContent = "Welcome";
-        mainSubtitle.textContent = "Enjoy seamless connectivity throughout your stay.";
+        mainSubtitle.innerHTML = "Enjoy seamless connectivity throughout <br><strong>your stay.</strong>";
         
         clearError(); 
     });
 
-
-    // --- 3. MODAL LOGIC ---
     window.openModal = () => {
         tcModal.classList.remove('hidden');
         document.body.classList.add('modal-open');
@@ -115,8 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === tcModal) closeModal();
     });
 
-
-    // --- 4. UI INTERACTIONS & ERRORS ---
     togglePasswordBtn.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
@@ -153,10 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
-    // --- 5. AUTHENTICATION LOGIC ---
-    
-    // Voucher Submit
     voucherForm.addEventListener('submit', (e) => {
         e.preventDefault();
         clearError();
@@ -182,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .finally(() => setButtonLoading(btn, false));
     });
 
-    // Account Submit
     accountForm.addEventListener('submit', (e) => {
         e.preventDefault();
         clearError();
@@ -209,9 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .finally(() => setButtonLoading(btn, false));
     });
 
-
-    // --- 6. NETWORK / BACKEND VALIDATION LOGIC ---
-    
     function authenticateVoucher(code) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -236,8 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // --- 7. SUCCESS UI TRANSITION ---
     function showSuccess() {
         loginState.classList.add('d-none');
         successState.classList.remove('d-none');
