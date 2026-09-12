@@ -54,9 +54,11 @@
             <!-- Login Content -->
             <div id="login-state" class="login-state">
                 
-                <!-- 1. The Logo stays at the top permanently -->
+                <!-- Dynamic Header: Text changes via JS when switching views -->
                 <div class="auth-header">
                     <img src="assets/logo.png" alt="Carols Beau Rivage Matrouh" class="hotel-logo auth-logo">
+                    <h1 class="welcome-text" id="main-title">Welcome</h1>
+                    <p class="welcome-subtext" id="main-subtitle">Enjoy seamless connectivity throughout your stay.</p>
                 </div>
 
                 <!-- Global Error Message Container -->
@@ -65,11 +67,6 @@
                 <!-- VOUCHER LOGIN VIEW (Default) -->
                 <div id="voucher-view" class="view-section">
                     
-                    <div class="view-header">
-                        <h1 class="welcome-text">Welcome</h1>
-                        <p class="welcome-subtext">Enjoy seamless connectivity throughout your stay.</p>
-                    </div>
-
                     <form id="voucher-form" class="auth-form" novalidate>
                         <div class="input-group">
                             <div class="input-icon">
@@ -101,11 +98,6 @@
 
                 <!-- ACCOUNT LOGIN VIEW (Hidden by default) -->
                 <div id="account-view" class="view-section d-none">
-                    
-                    <div class="view-header">
-                        <h1 class="welcome-text">Account Login</h1>
-                        <p class="welcome-subtext">Connect using your hotel account details.</p>
-                    </div>
                     
                     <form id="account-form" class="auth-form" novalidate>
                         <div class="input-group">
