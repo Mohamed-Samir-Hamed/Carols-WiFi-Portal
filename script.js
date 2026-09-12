@@ -1,6 +1,5 @@
 /**
  * CAPTIVE PORTAL - FRONT-END CONTROLLER
- * Full implementation with intro logic, view switching, and mock API handling.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,11 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const waitBtn = document.getElementById('wait-btn');
     const skipBtn = document.getElementById('skip-btn');
     
-    // View Switching
+    // View Switching & Dynamic Titles
     const voucherView = document.getElementById('voucher-view');
     const accountView = document.getElementById('account-view');
     const btnShowAccount = document.getElementById('show-account-view');
     const btnShowVoucher = document.getElementById('show-voucher-view');
+    const mainTitle = document.getElementById('main-title');
+    const mainSubtitle = document.getElementById('main-subtitle');
 
     // Forms
     const voucherForm = document.getElementById('voucher-form');
@@ -39,16 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         count--;
         const displayCount = count < 10 ? `0${count}` : count;
         
-        // Updates the text inside the Wait button
         waitBtn.textContent = `Wait... (${displayCount})`;
         
         if (count <= 0) {
             clearInterval(countdownInterval);
-            
-            // Remove the Wait button completely
             waitBtn.classList.add('d-none');
             
-            // Optional: Auto skip after additional 10s idle time
             autoSkipTimeout = setTimeout(() => {
                 if(!introScreen.classList.contains('fade-out')) {
                     transitionToAuth();
@@ -58,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 
     const transitionToAuth = () => {
-        // Stop timers if the user skips early
         clearInterval(countdownInterval);
         clearTimeout(autoSkipTimeout);
         
@@ -69,20 +65,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1200); 
     };
 
-    // The skip button is immediately active and triggers the transition
     skipBtn.addEventListener('click', transitionToAuth);
 
 
-    // --- 2. VIEW SWITCHING (VOUCHER <-> ACCOUNT) ---
+    // --- 2. VIEW SWITCHING & DYNAMIC TEXT ---
     btnShowAccount.addEventListener('click', () => {
         voucherView.classList.add('d-none');
         accountView.classList.remove('d-none');
+        
+        // Dynamically update the header text
+        mainTitle.textContent = "Account Login";
+        mainSubtitle.textContent = "Connect using your hotel account details.";
+        
         clearError(); 
     });
 
     btnShowVoucher.addEventListener('click', () => {
         accountView.classList.add('d-none');
         voucherView.classList.remove('d-none');
+        
+        // Revert the header text back to Welcome
+        mainTitle.textContent = "Welcome";
+        mainSubtitle.textContent = "Enjoy seamless connectivity throughout your stay.";
+        
         clearError(); 
     });
 
@@ -210,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function authenticateVoucher(code) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // Hardcoded mock validation: Only 'VIP123' will succeed.
                 if (code !== 'VIP123') {
                     reject(new Error("The voucher code is invalid or has expired."));
                 } else {
@@ -223,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function authenticateAccount(account, password) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // Hardcoded mock validation: Only 'guest' / 'hotel2026' will succeed.
                 if (account !== 'guest' || password !== 'hotel2026') {
                     reject(new Error("The account details could not be verified."));
                 } else {
